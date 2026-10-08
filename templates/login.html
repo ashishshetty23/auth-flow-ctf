@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}VaultLogin — Sign in{% endblock %}
+{% block content %}
+  <p class="brand">🔐 VaultLogin</p>
+  <p class="tag">Sign in to your secure account.</p>
+
+  {% if error %}<div class="err">{{ error }}</div>{% endif %}
+
+  <form action="{{ url_for('login') }}" method="post">
+    <label>Username</label>
+    <input name="username" autocomplete="username" autofocus>
+    <label>Password</label>
+    <input name="password" type="password" autocomplete="current-password">
+    <button type="submit">Sign in</button>
+  </form>
+
+  <div class="hint">
+    Demo account: <code>{{ demo_user }}</code> / <code>{{ demo_pass }}</code><br>
+    After signing in we'll email you a one-time code to finish logging in.
+  </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}VaultLogin — Account{% endblock %}
+{% block content %}
+  <p class="brand">👤 Welcome, {{ user }}</p>
+  <p class="tag">This is your protected account page.</p>
+
+  {% if not mfa %}
+    <div class="warn">
+      ⚠️ You reached this page <strong>without completing two-step
+      verification</strong>. The server never checked that you finished MFA —
+      that's the bug.
+    </div>
+  {% endif %}
+
+  <div class="flag">{{ flag }}</div>
+
+  <p style="margin-top:18px"><a href="{{ url_for('logout') }}">Log out</a></p>
+{% endblock %}

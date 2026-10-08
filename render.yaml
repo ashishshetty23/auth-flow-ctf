@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: auth-flow-ctf
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
+    healthCheckPath: /healthz
+    envVars:
+      # Change this to your real flag before deploying.
+      - key: FLAG
+        value: CTF{mfa_means_nothing_if_you_dont_enforce_it}
+      # Keeps sessions valid across restarts; Render generates a random value.
+      - key: SECRET_KEY
+        generateValue: true

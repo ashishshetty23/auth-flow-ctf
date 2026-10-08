@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}VaultLogin — Verify{% endblock %}
+{% block content %}
+  <p class="brand">📧 Two-step verification</p>
+  <p class="tag">We emailed a 6-digit code to your inbox. Enter it to continue.</p>
+
+  {% if error %}<div class="err">{{ error }}</div>{% endif %}
+
+  <form action="{{ url_for('verify') }}" method="post">
+    <label>One-time code</label>
+    <input name="code" inputmode="numeric" maxlength="6" placeholder="••••••" autofocus>
+    <button type="submit">Verify</button>
+  </form>
+
+  <div class="hint">
+    Didn't get an email? This is a demo — no real email is sent, so you can't
+    actually read the code. Hmm... is this verification step really standing
+    between you and your account?
+  </div>
+{% endblock %}
